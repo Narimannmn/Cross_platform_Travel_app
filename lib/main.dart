@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mid/screens/home_screen.dart';
+import 'package:mid/screens/post_screen.dart';
 import './screens/welcome_screen.dart';
 
 void main() {
@@ -25,7 +27,7 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xFFEDF2F6),
       ),
-      home: WelcomeScreen(), // Assuming WelcomeScreen is a Widget
+      home: WelcomeScreen(),
     );
   }
 }
