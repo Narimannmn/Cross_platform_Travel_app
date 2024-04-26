@@ -1,0 +1,100 @@
+[
+  {
+    "country": "United States",
+    "city": "New Yorksu",
+    "hotel": "Luxury Hotelssss",
+    "adults": "22",
+    "children": "1",
+    "price": 200,
+    "img": "https://d1bv4heaa2n05k.cloudfront.net/user-images/1444124382002/shutterstock-59760706small_destinationMain_1444124438669.jpeg"
+  },
+  {
+    "country": "France",
+    "city": "Paris",
+    "hotel": "Elegant Resort",
+    "adults": "3",
+    "children": "0",
+    "price": 300,
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV0WCDR6glhTu6XXEBawXK38I8grafCIEyt_wF9ZdzKA&s"
+  },
+  {
+    "country": "Japan",
+    "city": "Tokyo",
+    "hotel": "City View Hotel",
+    "adults": 1,
+    "children": 2,
+    "price": 250,
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkSM6Uqpf0Exl78Mk3izAD73juibnAnFe3CA-oBYL1ew&s"
+  },
+  {
+    "country": "Australia",
+    "city": "Sydney",
+    "hotel": "Beachfront Resort",
+    "adults": 2,
+    "children": 1,
+    "price": 275,
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2BYzT3nYnqrMUR5F31VZ1DCp0rye92hf6sBZKsjBsVA&s"
+  },
+  {
+    "country": "Brazil",
+    "city": "Rio de Janeiro",
+    "hotel": "Tropical Paradise",
+    "adults": 4,
+    "children": 0,
+    "price": 410,
+    "img": "https://content.r9cdn.net/rimg/dimg/54/ed/eb0f657a-lm-159298-16d6b936db3.jpg?crop=true&width=1020&height=498"
+  },
+  {
+    "country": "Kazakhstan",
+    "city": "Almaty",
+    "hotel": "Mountain Retreat",
+    "adults": 2,
+    "children": 1,
+    "price": 135,
+    "img": "https://lp-cms-production.imgix.net/2023-03/kazakhstan-GettyImages-961506872-rfc.jpeg?auto=format&w=1920&h=640&fit=crop&crop=faces,edges&q=75"
+  },
+  {
+    "country": "Kazakhstan",
+    "city": "Astana",
+    "hotel": "Skyline View Hotel",
+    "adults": 3,
+    "children": 0,
+    "price": 120,
+    "img": "https://all.accor.com/magazine/imagerie/1-619b.jpg"
+  },
+  {
+    "country": "Italy",
+    "city": "Rome",
+    "hotel": "Historic Inn",
+    "adults": 2,
+    "children": 0,
+    "price": 190,
+    "img": "https://d3dqioy2sca31t.cloudfront.net/Projects/cms/production/000/033/273/slideshow/fe4b9c40eeb71b3290d068a92061770a/slide-italy-main-cinque-terre-manarola.jpg"
+  },
+  {
+    "country": "Kazakhstan",
+    "city": "Astana",
+    "hotel": "Hilton",
+    "adults": 2,
+    "children": 0,
+    "price": 200,
+    "img": "https://www.preventionweb.net/sites/default/files/styles/landscape_16_9/public/2022-09/Nur-Sultan-Kazakhstan.jpg?h=2cf907fb&itok=v5aAAdRJ",
+    "creationDate": {
+      "$date": "2024-02-19T06:55:40.694Z"
+    },
+    "__v": 0
+  },
+  {
+    "country": "South Korea",
+    "city": "Seoul",
+    "hotel": "Hilton",
+    "adults": 4,
+    "children": 1,
+    "price": 460,
+    "img": "https://www.lowyinstitute.org/sites/default/files/GettyImages-1134201090.jpeg",
+    "creationDate": {
+      "$date": "2024-02-19T08:13:53.563Z"
+    },
+    "__v": 0
+  }
+]

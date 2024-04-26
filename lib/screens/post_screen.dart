@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mid/widgets/post_bottom_bar.dart';
+import '../models/Tour.dart';
 import '../widgets/post_app_bar.dart';
 class PostScreen extends StatelessWidget {
-  const PostScreen({super.key});
+   final Tour tour;
+  const PostScreen({Key? key, required this.tour}) : super(key: key); 
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/city6.jpg'),
+          image: NetworkImage(tour.img),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
             Colors.black.withOpacity(0.7),
@@ -23,7 +25,7 @@ class PostScreen extends StatelessWidget {
           preferredSize: Size.fromHeight(90),
           child: PostAppBar(),
           ),
-          bottomNavigationBar:PostBottomBar()
+          bottomNavigationBar:PostBottomBar(tour: tour)
       ),
      
     ); 

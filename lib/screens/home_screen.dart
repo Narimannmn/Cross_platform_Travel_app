@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:mid/controllers/TourController.dart';
+import 'package:mid/models/Tour.dart';
 import 'package:mid/screens/post_screen.dart';
 import 'package:mid/widgets/drawer.dart';
 import '../widgets/home_app_bar.dart';
@@ -13,6 +14,7 @@ class HomePage extends StatelessWidget {
     'Hotels',
     'Restaurants',
   ];
+  final TourController tourController = TourController();
 
   HomePage({Key? key});
 
@@ -34,14 +36,14 @@ class HomePage extends StatelessWidget {
 
       body: Column(
         children: [
-          PreferredSize(
+          const PreferredSize(
             preferredSize: Size.fromHeight(90.0),
             child: HomeAppBar(),
           ),
           Expanded(
             child: SafeArea(
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 30),
+                padding: const EdgeInsets.symmetric(vertical: 30),
                 child: ListView(
                   children: [
                     Column(
@@ -52,12 +54,10 @@ class HomePage extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             itemCount: 6,
                             itemBuilder: (context, index) => InkWell(
-                              onTap: () {
-                                
-                              },
+                              onTap: () {},
                               child: Container(
                                 width: 240,
-                                margin: EdgeInsets.only(left: 15),
+                                margin: const EdgeInsets.only(left: 15),
                                 decoration: BoxDecoration(
                                   color: Colors.black,
                                   borderRadius: BorderRadius.circular(15),
@@ -72,16 +72,16 @@ class HomePage extends StatelessWidget {
                                   children: [
                                     Container(
                                       alignment: Alignment.topRight,
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.bookmark_border_outlined,
                                         color: Colors.white,
                                         size: 30,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Container(
                                       alignment: Alignment.bottomLeft,
-                                      child: Text(
+                                      child: const Text(
                                         "City name",
                                         style: TextStyle(
                                           color: Colors.white,
@@ -96,26 +96,26 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Padding(
-                            padding: EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(8),
                             child: Row(
                               children: [
                                 for (int i = 0; i < 6; i++)
                                   Container(
                                     margin:
-                                        EdgeInsets.symmetric(horizontal: 10),
+                                        const EdgeInsets.symmetric(horizontal: 10),
                                     padding:
-                                        EdgeInsets.fromLTRB(50, 10, 50, 10),
+                                        const EdgeInsets.fromLTRB(50, 10, 50, 10),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(20),
                                       boxShadow: [
-                                        BoxShadow(
+                                        const BoxShadow(
                                           color: Colors.black26,
                                           blurRadius: 6,
                                         )
@@ -123,7 +123,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                     child: Text(
                                       category[i],
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -133,77 +133,95 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: 6,
-                            shrinkWrap: true,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: EdgeInsets.all(15),
-                                child: Column(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                         Navigator.push(context, MaterialPageRoute(builder: (context)=>(PostScreen())));
-                                      },
-                                      child: Container(
-                                        height: 300,
-                                        decoration: BoxDecoration(
-                                          color: Colors.black,
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                  "assets/city${index + 1}.jpg"),
-                                              fit: BoxFit.cover,
-                                              opacity: 0.7),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "City Name",
-                                            style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w600,
+                        FutureBuilder<List<Tour>>(
+                          future: tourController.getAllTours(),
+                          builder: (BuildContext context, AsyncSnapshot<List<Tour>> snapshot) {
+                            if (snapshot.connectionState == ConnectionState.waiting) {
+                              return const Center(child: CircularProgressIndicator());
+                            } else if (snapshot.hasError) {
+                              return Center(child: Text('Error: ${snapshot.error}'));
+                            } else {
+                              List<Tour> tours = snapshot.data!;
+                              return ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: tours.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  final Tour tour = tours[index];
+                                  return Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: Column(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => PostScreen(tour: tour),
+                                              ),
+                                            );
+                                          },
+                                          child: Container(
+                                            height: 300,
+                                            decoration: BoxDecoration(
+                                              color: Colors.black,
+                                              borderRadius: BorderRadius.circular(15),
+                                              image: DecorationImage(
+                                                image: NetworkImage(tour.img), // Use NetworkImage for external URLs
+                                                fit: BoxFit.cover,
+                                                colorFilter: ColorFilter.mode(
+                                                  Colors.black.withOpacity(0.7),
+                                                  BlendMode.dstATop,
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                          Icon(
-                                            Icons.more_vert,
-                                            size: 30,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.star,
-                                          color: Colors.amber,
-                                          size: 20,
                                         ),
-                                        Text(
-                                          '4.5',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500),
-                                        )
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 10),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                tour.city,
+                                                style: const TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              const Icon(
+                                                Icons.more_vert,
+                                                size: 30,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        const Row(
+                                          children: [
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.amber,
+                                              size: 20,
+                                            ),
+                                            Text(
+                                              '4.5',
+                                              style: TextStyle(fontWeight: FontWeight.w500),
+                                            )
+                                          ],
+                                        ),
                                       ],
                                     ),
-                                  ],
-                                ),
+                                  );
+                                },
                               );
-                            }),
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ],

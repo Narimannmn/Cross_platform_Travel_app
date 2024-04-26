@@ -4,7 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../models/Tour.dart';
+
 class PostBottomBar extends StatelessWidget {
+  final Tour tour;
+  const PostBottomBar({Key? key, required this.tour}) : super(key: key); 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +32,7 @@ class PostBottomBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "City Name, Country",
+                      "${tour.city} ${tour.country}",
                       style: TextStyle(
                         fontSize: 23,
                         fontWeight: FontWeight.w600,
@@ -58,7 +62,7 @@ class PostBottomBar extends StatelessWidget {
                   height: 25,
                 ),
                 Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.0",
+                  "${tour.hotel} you will there Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.0",
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 16,
